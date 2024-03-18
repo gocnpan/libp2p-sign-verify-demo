@@ -1,0 +1,66 @@
+basePath: /api
+definitions:
+  pkg.Res:
+    properties:
+      code:
+        type: string
+      data: {}
+      msg:
+        type: string
+    type: object
+host: http://127.0.0.1
+info:
+  contact: {}
+  description: 前端签名, 后端验证
+  title: Libp2p签名验证Demo
+  version: "1.0"
+paths:
+  /api/any:
+    get:
+      consumes:
+      - application/json
+      description: 输入任意query参数
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取文件列表
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Res'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 任意get
+      tags:
+      - file
+    post:
+      consumes:
+      - application/json
+      description: 输入任意query参数
+      parameters:
+      - description: 任意值
+        in: body
+        name: any
+        required: true
+        schema:
+          additionalProperties: true
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取文件列表
+          schema:
+            allOf:
+            - $ref: '#/definitions/pkg.Res'
+            - properties:
+                data:
+                  additionalProperties: true
+                  type: object
+              type: object
+      summary: 任意get
+      tags:
+      - file
+swagger: "2.0"

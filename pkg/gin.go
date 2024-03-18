@@ -8,10 +8,16 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	_ "github.com/gocnpan/libp2p-sign-verify-demo/pkg/docs"
+
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func Router() {
 	router := gin.Default()
+
+	router.GET("/docs/api/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// 跨域 & 验证签名
 	router.Use(midCors(), midSignVerify())
@@ -39,6 +45,15 @@ func getAny(c *gin.Context) {
 }
 
 // 任意post
+// postAny godoc
+// @Summary 任意get
+// @Description 输入任意query参数
+// @Tags file
+// @Accept json
+// @Produce json
+// @Param any body map[string]interface{} true "任意值"
+// @Success 200 {object} Res{data=map[string]interface{}} "成功获取文件列表"
+// @Router /api/any [post]
 func postAny(c *gin.Context) {
 	bt, err := io.ReadAll(c.Request.Body)
 	if err != nil {
