@@ -61,11 +61,11 @@ export default {
       let res = await api.verifyPost(obj)
       if (res.code == "ok"){
         Message.success("校验成功, 数据在控制台输出")
+        console.log("POST校验成功, 数据如下")
+        console.log(res.data)
       }else{
         Message.error("校验失败: " + res.msg)
       }
-      console.log("POST校验成功, 数据如下")
-      console.log(res.data)
     },
   }
 }

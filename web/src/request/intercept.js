@@ -72,6 +72,8 @@ instance.interceptors.request.use(
 
     if (sign) {
       request.headers["Req-Hash"] = hash
+      // 修改签名 校验签名的可靠性
+      // sign = sign.replace("4", "5")
       request.headers["Req-Sign"] = sign
       request.headers["Front-Id"] = idKey.id.toString()
     }
