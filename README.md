@@ -25,4 +25,4 @@ sh start.sh
 npm run dev
 ```
 
-api文档: [swagger](http://127.0.0.1:8980/docs/api/index.html)
+api文档(需要启动后端服务): http://127.0.0.1:8980/docs/api/index.html
